@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dev.camsysinfo.videomemories"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <!--
+      VideoMemories: file browser -> looping player for Sony Android
+      cameras (developed on the ILCE-6300, Android 4.1.2). Evidence for
+      every design choice - and for everything that crashes this camera -
+      is in FINDINGS.md at the repository root.
+
+      No android:icon yet: the system default stands in until the
+      launcher artwork is added (see README).
+    -->
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="22" />
+
+    <!-- Storage: the videos live on the card; WRITE carried every read
+         in the field builds on this ROM. -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:label="@string/app_name"
+        android:hardwareAccelerated="false"
+        android:allowBackup="false"
+        android:hasCode="true">
+
+        <activity
+            android:name=".FileBrowserActivity"
+            android:exported="true"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".PlayerActivity"
+            android:exported="false"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+    </application>
+</manifest>
